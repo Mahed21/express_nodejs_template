@@ -57,28 +57,48 @@ module.exports.getAllUser = (req, res, next) => {
   console.log(limit);
   res.json(data.slice(0, limit));
 };
+
 //save user
 module.exports.saveATool = (req, res) => {
-  console.log(req.query);
+  //console.log(req.query);
   data.push(req.body);
-  res.send(data);
+  //console.log(data);
+  fs.writeFile("data.json", JSON.stringify(data), (err) => {
+    if (err) {
+      res.write("failed to load data");
+      res.end();
+    } else {
+      res.write("successfull load data");
+      res.end();
+    }
+  });
+  //res.send(data);
 };
+
 //update tool
 module.exports.updateTool = (req, res) => {
   // const newData = req.body;
   const { id } = req.params;
   const filter = { _id: id };
-
   const newData = data.find((data) => data.Id === Number(id));
-
   newData.Id = req.body.Id;
   newData.gender = req.body.gender;
   newData.name = req.body.name;
   newData.contact = req.body.contact;
   newData.address = req.body.address;
   newData.photoUrl = req.body.photoUrl;
+  fs.writeFile("data.json", JSON.stringify(data), (err) => {
+    if (err) {
+      res.write("failed to load data");
+      res.end();
+    } else {
+      res.write("successfull update data");
+      res.end();
+    }
+  });
 
-  res.send(newData);
+  // console.log(newData);
+  // res.send(newData);
 };
 
 //delete
@@ -87,9 +107,19 @@ module.exports.deleteTool = (req, res) => {
   const filter = { _id: id };
 
   datas = data.filter((data) => data.Id !== Number(id));
-
-  res.send(datas);
+  console.log(datas);
+  fs.writeFile("data.json", JSON.stringify(datas), (err) => {
+    if (err) {
+      res.write("failed to load data");
+      res.end();
+    } else {
+      res.write("successfull deleted");
+      res.end();
+    }
+  });
 };
+
+//random user
 
 module.exports.randomUser = (req, res, next) => {
   res.json("hii");

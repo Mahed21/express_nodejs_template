@@ -1,0 +1,7 @@
+const express = require("express");
+const router = express.Router();
+const fetch = require("node-fetch");
+const getAllUserController = require("../controller/userController");
+router.route("/:id").patch(getAllUserController.updateTool);
+
+module.exports = router;

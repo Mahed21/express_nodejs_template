@@ -11,13 +11,6 @@ const getAllUserController = require("../controller/userController");
 
 //   res.json(body);
 // });
-router
-  .route("/")
-  .get(getAllUserController.getAllUser)
-  .post(getAllUserController.saveATool);
-router
-  .route("/:id")
-  .delete(getAllUserController.deleteTool)
-  .patch(getAllUserController.updateTool);
+router.route("/").get(getAllUserController.getAllUser);
 
 module.exports = router;
