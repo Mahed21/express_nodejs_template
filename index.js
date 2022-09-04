@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 dbConnect();
 app.use("/GET/user/all", userRouter);
-app.use("/user/random", randomRouter);
+app.use("/GET/user/random", randomRouter);
 app.use("/POST/user/save", saveRouter);
 app.use("/PATCH/user/update", updateRouter);
 app.use("/DELETE/user/delete", deleteRouter);
